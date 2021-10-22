@@ -1,0 +1,30 @@
+{
+  "name": "short-linker",
+  "version": "1.0.0",
+  "description": "Here you will see a short linker app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon",
+    "build": "npx webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Srr233/Short-linker.git"
+  },
+  "author": "Siarhei Saltanovich",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Srr233/Short-linker/issues"
+  },
+  "homepage": "https://github.com/Srr233/Short-linker#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.14",
+    "ts-loader": "^9.2.6",
+    "ts-node": "^10.3.1",
+    "typescript": "^4.4.4",
+    "webpack": "^5.59.1",
+    "webpack-cli": "^4.9.1",
+    "webpack-node-externals": "^3.0.0"
+  }
+}
