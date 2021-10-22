@@ -19,6 +19,9 @@
   },
   "homepage": "https://github.com/Srr233/Short-linker#readme",
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/parser": "^5.1.0",
+    "eslint": "^8.0.1",
     "nodemon": "^2.0.14",
     "ts-loader": "^9.2.6",
     "ts-node": "^10.3.1",
