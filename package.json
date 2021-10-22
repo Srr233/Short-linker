@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Srr233/Short-linker#readme",
   "devDependencies": {
+    "@types/express": "^4.17.13",
     "@typescript-eslint/eslint-plugin": "^5.1.0",
     "@typescript-eslint/parser": "^5.1.0",
     "eslint": "^8.0.1",
@@ -29,5 +30,8 @@
     "webpack": "^5.59.1",
     "webpack-cli": "^4.9.1",
     "webpack-node-externals": "^3.0.0"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
