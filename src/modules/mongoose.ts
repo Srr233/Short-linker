@@ -1,8 +1,8 @@
-import UserLink from '../general date/mongoose_scheme';
+import { UserLink, Links } from '../general date/mongoose_scheme';
 import { Link_interface } from '../interfaces/Link_interface';
 
 const createInMongo = async (login: string, originalLink: string, shortLink: string) => {
-    const newLink = {
+    const newUserLink = {
         original: originalLink,
         short: shortLink,
         statistic: {
@@ -11,14 +11,23 @@ const createInMongo = async (login: string, originalLink: string, shortLink: str
     };
 
     let user_link = await UserLink.findOne({login});
+    let currentNewLink = await Links.findOne({originalLink});
     
     if (user_link) {
-        user_link.links.push(newLink);
+        user_link.links.push(newUserLink);
     } else {
         user_link = new UserLink({
             login,
-            links: [newLink]
+            links: [newUserLink]
         });
+    }
+
+    if (!currentNewLink) {
+        currentNewLink = new Links({
+            original: originalLink,
+            short: shortLink
+        });
+        await currentNewLink.save();
     }
     await user_link.save();
 }
