@@ -1,1 +1,3 @@
-Here you will see a short linker app
+# Service for working links
+Create / delete links in Mongoose.
+Plus verify tokens
