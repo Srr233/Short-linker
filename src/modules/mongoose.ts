@@ -11,7 +11,10 @@ const createInMongo = async (login: string, originalLink: string, shortLink: str
     };
 
     let user_link = await UserLink.findOne({login});
-    let currentNewLink = await Links.findOne({originalLink});
+    const currentNewLink = new Links({
+        original: originalLink,
+        short: shortLink
+    });
     
     if (user_link) {
         user_link.links.push(newUserLink);
@@ -21,24 +24,18 @@ const createInMongo = async (login: string, originalLink: string, shortLink: str
             links: [newUserLink]
         });
     }
-
-    if (!currentNewLink) {
-        currentNewLink = new Links({
-            original: originalLink,
-            short: shortLink
-        });
-        await currentNewLink.save();
-    }
+    await currentNewLink.save();
     await user_link.save();
 }
 
 const deleteInMongo = async (login: string, link: string) => {
     const user_link = await UserLink.findOne({login});
-
+    const currentLink = await Links.findOne({short: link});
     if (user_link) {
         user_link.links = user_link.links.filter((link_Mongo: Link_interface) => {
                                 return (link_Mongo.original !== link) && (link_Mongo.short !== link);
                             });
+        await currentLink.remove();
         await user_link.save();
         return true;
     } else {
