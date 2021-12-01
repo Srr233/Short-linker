@@ -43,11 +43,12 @@ const deleteInMongo = async (login: string, link: string) => {
     }
 }
 
-const getAllLinks = async (login: string) => {
+const getLink = async (login: string, short_link: string) => {
     const current_user = await UserLink.findOne({login});
 
     if (current_user) {
-        return current_user.links;
+        const current_link = current_user.links.find((link: Link_interface) => link.short === short_link);
+        return current_link;
     }
     return false;
 }
@@ -55,5 +56,5 @@ const getAllLinks = async (login: string) => {
 export {
     createInMongo,
     deleteInMongo,
-    getAllLinks
+    getLink
 }

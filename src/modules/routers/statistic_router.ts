@@ -1,18 +1,19 @@
 import express, { Request, Response } from "express";
-import { getAllLinks } from "../mongoose";
+import { getLink } from "../mongoose";
+import regexLink from "../../general date/regexLink";
 
 const router = express.Router();
 
 const getStatistic = async (req: Request, res: Response) => {
-    const {login} = req.body;
+    const {login, link} = req.body;
 
-    if (!login) {
+    if (!login || link.match(regexLink) || !link.match(/.{8}/)) {
         res.sendStatus(400);
         return;
     }
-    const links = await getAllLinks(login);
-    if (links) {
-        res.send(JSON.stringify(links));
+    const current_link = await getLink(login, link);
+    if (current_link) {
+        res.send(JSON.stringify(current_link));
     } else {
         res.sendStatus(401);
     }
