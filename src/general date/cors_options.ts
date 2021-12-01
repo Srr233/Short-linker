@@ -1,4 +1,4 @@
 export default  {
-    origin: 'http://localhost:8080',
+    origin: 'https://share-linker.netlify.app',
     optionsSuccessStatus: 200
 }
