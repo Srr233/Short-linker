@@ -7,13 +7,19 @@ import createRouter from "./modules/routers/create_router";
 import deleteRouter from './modules/routers/delete_router';
 import getAllLinksRouter from './modules/routers/statistic_router';
 import check from "./modules/checkTokenRequest";
+import creds from "./general date/creds";
 
 const env_port = process.env.PORT || 3000;
 
 const app = express();
 
 const start = async () => {
-    await mongoose.connect(mongo_uri);
+    await mongoose.connect(mongo_uri, {
+        auth: {
+            username: creds.user,
+            password: creds.pwd
+        }
+    });
     app.use(cors(cors_options));
     app.use(check, express.json());
     app.get('/', (_, res) => res.sendStatus(200));
